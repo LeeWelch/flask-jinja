@@ -12,6 +12,20 @@ def index():
 def about():
     title = "About"
     return render_template("about.html", title=title)
+  
+movie_dict = [
+              {"title": "Dune", "genre": "Sci-Fi", "rating":3},
+              {"title": "Alien", "genre": "Sci-Fi", "rating":4},
+              {"title": "Batman", "genre": "Comics", "rating":5}
+            ]
+
+@app.route('/movies')
+def movies():
+    context = {
+      "title" : "Movies",
+      "movies" : movie_dict
+    }
+    return render_template("movies.html", **context)
 
 @app.route('/contact')
 def contact():
