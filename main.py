@@ -1,7 +1,17 @@
 from flask import Flask, render_template
 
+#store functions here
+import utils as utils
+
 app = Flask(__name__)
 
+movie_dict = [
+  {"title": "Dune", "genre": "Sci-Fi", "rating":3},
+  {"title": "Alien", "genre": "Sci-Fi", "rating":4},
+  {"title": "Batman", "genre": "Comics", "rating":5}
+]
+
+movie_dict = utils.movie_stars(movie_dict)
 
 @app.route('/')
 def index():
@@ -12,20 +22,15 @@ def index():
 def about():
     title = "About"
     return render_template("about.html", title=title)
-  
-movie_dict = [
-              {"title": "Dune", "genre": "Sci-Fi", "rating":3},
-              {"title": "Alien", "genre": "Sci-Fi", "rating":4},
-              {"title": "Batman", "genre": "Comics", "rating":5}
-            ]
 
 @app.route('/movies')
 def movies():
-    context = {
+
+  context = {
       "title" : "Movies",
       "movies" : movie_dict
     }
-    return render_template("movies.html", **context)
+  return render_template("movies.html", **context)
 
 @app.route('/contact')
 def contact():
