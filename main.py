@@ -1,17 +1,38 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
+
+#create a secret key for security
+import os
 
 #store functions here
 import utils as utils
 
 app = Flask(__name__)
 
-movie_dict = [
-  {"title": "Dune", "genre": "Sci-Fi", "rating":3},
-  {"title": "Alien", "genre": "Sci-Fi", "rating":4},
-  {"title": "Batman", "genre": "Comics", "rating":5}
-]
+#secret key for form security 
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'default_secret_key')
 
-movie_dict = utils.movie_stars(movie_dict)
+
+# Route for the form page
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    title = "Register"
+    feedback = None
+    if request.method == 'POST':
+        feedback = register_data(request.form)
+
+    context = {
+        "title": title,
+        "feedback": feedback
+    }
+    return render_template('register.html', **context)
+
+
+def register_data(form_data):
+    feedback = []
+    for key, value in form_data.items():
+        feedback.append(f"{key}: {value}")
+    return feedback
+
 
 @app.route('/')
 def index():
@@ -23,9 +44,13 @@ def about():
     title = "About"
     return render_template("about.html", title=title)
 
+
+
 @app.route('/movies')
 def movies():
-
+  
+  movie_dict = utils.movie_stars(utils.movie_dict)
+  
   context = {
       "title" : "Movies",
       "movies" : movie_dict
