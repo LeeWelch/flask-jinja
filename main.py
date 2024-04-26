@@ -18,21 +18,13 @@ def register():
     title = "Register"
     feedback = None
     if request.method == 'POST':
-        feedback = register_data(request.form)
+        feedback = utils.register_data(request.form)
 
     context = {
         "title": title,
         "feedback": feedback
     }
     return render_template('register.html', **context)
-
-
-def register_data(form_data):
-    feedback = []
-    for key, value in form_data.items():
-        feedback.append(f"{key}: {value}")
-    return feedback
-
 
 @app.route('/')
 def index():

@@ -18,5 +18,17 @@ def add_stars(rating):
     my_return += f"<span class=\"fa fa-star {checked}\"></span>"
   return my_return
 
-  #<span class="fa-solid fa-star-half-stroke"></span>
-  #put the above in an elif statement??
+def register_data(form_data):
+  feedback = []
+  for key, value in form_data.items():
+    # checkboxes have [] for special handling
+    if key.endswith('[]'):
+      # Use getlist to get all values for the checkbox
+      checkbox = request.form.getlist(key)
+      key = key.replace('_', ' ').replace('[]', '')
+      feedback.append(f"{key}: {', '.join(map(str, checkbox))}")
+    else:
+      # Handle other form elements
+      key = key.replace('_', ' ')
+      feedback.append(f"{key}: {value}")
+  return feedback
