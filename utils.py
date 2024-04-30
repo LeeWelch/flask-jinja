@@ -1,3 +1,4 @@
+from flask import Flask, render_template, request, url_for
 
 movie_dict = [
   {"title": "Dune", "genre": "Sci-Fi", "rating":3},
