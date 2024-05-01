@@ -6,11 +6,33 @@ import os
 #store functions here
 import utils as utils
 
+import json
+
 app = Flask(__name__)
 
 #secret key for form security 
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'default_secret_key')
 
+@app.route('/user/<int:user_number>')
+def user(user_number):
+    return f'Content for User {user_number}'
+
+
+#user list
+@app.route('/users')
+def users():
+
+  # Read project data from JSON file
+  with open('test.json') as json_file:
+      user_data = json.load(json_file)
+      #print(user_data)
+
+  context = {
+    "title": "Users",
+    "users": user_data
+  }
+
+  return render_template("users.html",**context)
 
 # Route for the form page
 @app.route('/register', methods=['GET', 'POST'])
