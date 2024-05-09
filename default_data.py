@@ -8,6 +8,8 @@ DEFAULT_RECIPES = [
         'description': 'A classic dish from a classic book',
         'ingredients': 'Eggs, Ham, Food coloring',
         'instructions': 'Cook the eggs and ham. Add green food coloring for fun!',
+        'image': 'egg',
+        'color': '#63E6BE',
         'rating': 5.0,
         'category_name': 'Breakfast'
     },
@@ -17,6 +19,8 @@ DEFAULT_RECIPES = [
         'description': 'Sweet and cold spaghetti-inspired ice cream',
         'ingredients': 'Vanilla ice cream, Strawberry sauce, White chocolate shavings, Gummy worms',
         'instructions': 'Scoop vanilla ice cream, drizzle with strawberry sauce, sprinkle with white chocolate shavings, and top with gummy worms.',
+        'image': 'ice-cream',
+        'color': '#B197FC',
         'rating': 4.5,
         'category_name': 'Dessert'
     },
@@ -26,6 +30,8 @@ DEFAULT_RECIPES = [
         'description': 'A sandwich that\'s so good, it\'s almost invisible',
         'ingredients': 'Two slices of imaginary bread, secret sauce, mystery meat, lettuce pray',
         'instructions': 'Assemble the sandwich with the imaginary ingredients.',
+        'image': 'bread-slice',
+        'color': '#00ffff',
         'rating': 4.2,
         'category_name': 'Lunch'
     },
@@ -35,6 +41,8 @@ DEFAULT_RECIPES = [
         'description': 'Turn a banana into a fun and edible dolphin',
         'ingredients': 'Banana, Chocolate chips, Blueberries',
         'instructions': 'Peel the banana, add chocolate chips for eyes, and blueberries for water splashes.',
+        'image': 'fish-fins',
+        'color': '#FFD43B',
         'rating': 4.8,
         'category_name': 'Dessert'
     },
@@ -44,6 +52,8 @@ DEFAULT_RECIPES = [
         'description': 'Create your own pancake masterpiece',
         'ingredients': 'Pancake batter, Food coloring, Toppings like syrup, Whipped cream, Sprinkles',
         'instructions': 'Pour pancake batter into creative shapes, add food coloring, and decorate with toppings.',
+        'image': 'stroopwafel',
+        'color': '#ff00ff',
         'rating': 4.6,
         'category_name': 'Breakfast'
     },
@@ -53,6 +63,8 @@ DEFAULT_RECIPES = [
         'description': 'Add a burst of color to your grilled cheese sandwich',
         'ingredients': 'Bread, Various colors of food coloring, Favorite cheese',
         'instructions': 'Dye the bread with different colors, assemble the sandwich, and grill until the cheese melts.',
+        'image': 'cheese',
+        'color': '#800080',
         'rating': 4.4,
         'category_name': 'Lunch'
     },
@@ -62,6 +74,8 @@ DEFAULT_RECIPES = [
         'description': 'A soup that\'s as fun to chew as it is to eat',
         'ingredients': 'Chicken broth, Vegetables, Surprise bubblegum treat',
         'instructions': 'Prepare chicken broth with vegetables and surprise your guests with a hidden bubblegum treat in each bowl.',
+        'image': 'bowl-food',
+        'color': '#ff80c0',
         'rating': 4.7,
         'category_name': 'Dinner'
     },
