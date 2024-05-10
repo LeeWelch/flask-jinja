@@ -11,9 +11,15 @@ import json
 # loads default recipe data
 from default_data import create_default_data
 
+#recipe data
 from models import db
 from models.category import Category
 from models.recipe import Recipe
+
+# flask admin
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
 
 app = Flask(__name__)
 
@@ -131,6 +137,16 @@ def gallery():
     title = "Gallery"
     return render_template("gallery.html", title=title)
 
+# Flask admin
+class RecipeView(ModelView):
+  column_searchable_list = ['name', 'author']
+
+admin = Admin(app)
+admin.url = '/admin/' #would not work on repl w/o this!
+admin.add_view(RecipeView(Recipe, db.session))
+admin.add_view(ModelView(Category, db.session))
+
+
 with app.app_context():
   db.create_all()
 
@@ -138,5 +154,6 @@ with app.app_context():
   db.create_all()
   #removes all data and loads defaults:
   create_default_data(db,Recipe,Category)
+    #can comment out to keep changes
 
 app.run(host='0.0.0.0', port=81)
