@@ -5,8 +5,11 @@
         {% for recipe in recipes %}
         <tr> 
             <td><a href="{{ url_for('recipe', recipe_id=recipe.id) }}">{{ recipe.name }}</a></td>
+              <td>{{ recipe.author }}</td>
+              <td>{{ recipe.category.name }}</td>
         {% endfor %}
         </tr>
     </table>
+<p><a href="/add_recipe">Add Recipe</a></p>
 {% endblock %}
 
