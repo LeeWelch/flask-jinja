@@ -14,3 +14,7 @@ class Recipe(db.Model):
     rating = db.Column(db.Float)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category', backref=db.backref('recipes', lazy=True))
+
+def __str__(self):
+    return self.rating
+

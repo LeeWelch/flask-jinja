@@ -220,6 +220,17 @@ def recipe(recipe_id):
     else:
         return render_template("404.html",title="404"), 404
 
+# Custom Jinja filter function
+def thumbs_filter(rating):
+    if rating >= 4:
+        return '<i class="fa fa-thumbs-up"></i>'
+    elif rating <= 2:
+        return '<i class="fa fa-thumbs-down"></i>'
+    else:
+        return ''
+
+# Register the filter with Jinja environment
+app.jinja_env.filters['thumbs'] = thumbs_filter
 
 @app.route('/user/<int:user_number>')
 def show_user(user_number):

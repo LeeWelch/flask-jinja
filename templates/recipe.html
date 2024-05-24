@@ -11,6 +11,7 @@
     <p>Ingredients: {{ recipe.ingredients }}</p>
     <p>Instructions: {{ recipe.instructions }}</p>
     <p>Rating: {{ recipe.rating }}</p>
+  <p>Rating:{{ recipe.rating}} {{ recipe.rating|thumbs|safe}}</p>
     <p>Category: {{ recipe.category.name }}</p>
     <p><i class="fa-solid fa-{{ recipe.image }} fa-2xl" style="color: {{ recipe.color }}; max-width: 200px;"></i></p>
 </div>
