@@ -10,7 +10,7 @@ import os
 import utils as utils
 
 #wtf forms import
-from forms import RecipeAdd, RecipeEdit, LoginForm, RegistrationForm
+from forms import RecipeAdd, RecipeEdit, LoginForm, RegistrationForm, RecipePicForm
 
 #add CSRF protection to forms
 from flask_wtf import CSRFProtect
@@ -21,10 +21,7 @@ import json
 from default_data import create_default_data
 
 #recipe data
-from models import db
-from models.category import Category
-from models.recipe import Recipe
-from models.chef import Chef
+from models import db, Recipe, Category, Chef
 
 #we may not need this as we're not using it directly
 from email_validator import validate_email, EmailNotValidError
@@ -44,6 +41,10 @@ csrf = CSRFProtect(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///recipes.db'
 db.init_app(app)
+
+# Set the upload folder for recipe pictures
+UPLOAD_FOLDER = 'static/recipe_pics'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #setup login
 login_manager = LoginManager()
@@ -118,6 +119,18 @@ def sign_up():
         "form": form
     }
     return render_template('sign_up.html', **context)
+
+#RECIPE_PIC
+@app.route('/recipe_pic/<int:recipe_id>', methods=['GET', 'POST'])
+def recipe_pic(recipe_id):
+    form = RecipePicForm()  # Instantiate the form
+    if form.validate_on_submit():
+        # Save the uploaded file
+        file = form.picture.data
+        filename = f"recipe_{recipe_id}.jpg"
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return redirect(url_for('recipe', recipe_id=recipe_id))
+    return render_template('recipe_pic.html', form=form)
 
 
 #DELETE

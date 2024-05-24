@@ -17,6 +17,7 @@ class RecipeAdd(FlaskForm):
 #RECIPE EDIT FORM
 class RecipeEdit(FlaskForm):
     name = StringField('Name', validators=[validators.DataRequired()])
+    author = StringField('Author', validators=[validators.DataRequired()])
     description = TextAreaField('Description', validators=[validators.DataRequired()])
     ingredients = TextAreaField('Ingredients', validators=[validators.DataRequired()])
     instructions = TextAreaField('Instructions', validators=[validators.DataRequired()])
@@ -36,3 +37,11 @@ class RegistrationForm(FlaskForm):
   password = PasswordField('Password', validators=[validators.DataRequired()])
   confirm_password = PasswordField('Confirm Password', validators=[validators.DataRequired(), validators.EqualTo('password', message='Passwords must match')])
   submit = SubmitField('Register')
+
+
+from flask_wtf.file import FileField, FileAllowed
+from wtforms.validators import DataRequired
+
+# Form for uploading recipe pictures
+class RecipePicForm(FlaskForm):
+    picture = FileField('Recipe Picture', validators=[DataRequired(), FileAllowed(['jpg'], 'Only JPG files allowed.')])
